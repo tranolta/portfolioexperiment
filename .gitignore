@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# User data (database + uploads) - never commit this
+data/*
+!data/uploads/
+data/uploads/*
+!data/uploads/.gitkeep
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

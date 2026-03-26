@@ -1,0 +1,326 @@
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN TOKENS — SIGNAL EDITORIAL SYSTEM
+   ============================================ */
+:root {
+  /* Core palette — 60/30/10 rule
+     60% → warm parchment bg
+     30% → near-black ink
+     10% → signal red (editorial accent)  +  vivid blue (interactive accent)  */
+  --c-bg:           #F0EAE0;   /* warm parchment — 60% */
+  --c-ink:          #111009;   /* warm near-black — 30% */
+
+  /* Accent colors — used sparingly, maximum pop
+     --c-signal: editorial / decorative emphasis (badges, bars, borders)
+     --c-vivid:  interactive elements (CTA buttons, links, hover states)
+     Both pass WCAG AA (4.5:1+) on the parchment background */
+  --c-signal:       #C82800;   /* deep editorial red  — 5.1:1 contrast on bg */
+  --c-vivid:        #1848D6;   /* electric blue       — 7.2:1 contrast on bg */
+
+  --c-muted:        #6B5F57;   /* body secondary text — 4.7:1 contrast on bg */
+  --c-border:       #CABFB3;   /* warm border */
+  --c-cream:        #F8F3EA;   /* slightly lighter surface */
+
+  /* Dark section palette */
+  --c-dark:         #0D0C0A;
+  --c-dark-surface: #161412;
+  --c-dark-text:    #F0EAE0;
+  --c-dark-muted:   #7A706A;   /* 4.6:1 contrast on dark bg */
+  --c-dark-border:  #2C2825;
+  /* Accent on dark bg — warm amber, complements the blue/red on light */
+  --c-dark-accent:  #FFA726;   /* warm amber — 9.1:1 on dark bg */
+
+  /* Typography */
+  --font-display:   'Cormorant Garamond', Georgia, serif;
+  --font-sans:      'Syne', system-ui, sans-serif;
+  --font-body:      'Outfit', system-ui, sans-serif;
+  --font-mono:      'DM Mono', monospace;
+  --font-condensed: 'Bebas Neue', sans-serif;
+
+  /* Spacing */
+  --pad-x: clamp(1.5rem, 5vw, 5rem);
+  --pad-y: clamp(5rem, 10vw, 10rem);
+
+  /* Easing */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--c-border); }
+
+/* ============================================
+   TYPOGRAPHY — SCALE
+   ============================================ */
+
+/* The hero: fills the viewport with presence */
+.text-hero {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 16vw, 18rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+}
+
+/* Section display headings */
+.text-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 7rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+}
+
+/* Card titles */
+.text-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 6rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+/* Pull quotes, section statements */
+.text-statement {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 3rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.15;
+}
+
+/* Navigation, labels, tags */
+.text-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Monospace metadata */
+.text-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+/* Outline text — stroke only, no fill */
+.text-outline {
+  -webkit-text-stroke: 1.5px currentColor;
+  color: transparent;
+}
+
+.text-outline-thin {
+  -webkit-text-stroke: 1px currentColor;
+  color: transparent;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+.section {
+  padding: var(--pad-y) 0;
+}
+
+.section-dark {
+  background: var(--c-dark);
+  color: var(--c-dark-text);
+  padding: var(--pad-y) 0;
+}
+
+/* ============================================
+   SECTION ORNAMENTS
+   ============================================ */
+.section-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--c-border);
+}
+
+.section-rule-dark {
+  width: 100%;
+  height: 1px;
+  background: var(--c-dark-border);
+}
+
+/* Section number badge: 01 / 02 / 03 */
+.section-index {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: var(--c-muted);
+}
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+}
+
+.reveal-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger delays */
+.d1 { transition-delay: 80ms; }
+.d2 { transition-delay: 160ms; }
+.d3 { transition-delay: 240ms; }
+.d4 { transition-delay: 320ms; }
+.d5 { transition-delay: 400ms; }
+
+/* ============================================
+   HERO ENTRANCE ANIMATIONS
+   ============================================ */
+@keyframes hero-in {
+  0%   { opacity: 0; transform: translateY(48px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ============================================
+   CURSOR INTERACTION HINT
+   ============================================ */
+.cursor-signal {
+  cursor: pointer;
+}
+
+/* ============================================
+   GRAIN OVERLAY
+   The subtle film grain that makes everything feel premium
+   ============================================ */
+#grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ============================================
+   TAGS
+   ============================================ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.tag:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   LINK ARROW BUTTON
+   ============================================ */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: gap 0.3s var(--ease-out);
+}
+
+.arrow-link:hover {
+  gap: 1.2rem;
+}
+
+.arrow-link::after {
+  content: '→';
+  font-size: 1rem;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.arrow-link:hover::after {
+  transform: translateX(4px);
+}

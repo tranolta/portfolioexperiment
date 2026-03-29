@@ -88,7 +88,7 @@ export default function AboutSection() {
             onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
             onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
-            {expanded ? 'Show less' : 'Read more'}
+            {expanded ? 'Show less' : 'More about me'}
             <span style={{
               display: 'inline-block',
               transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',

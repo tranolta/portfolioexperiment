@@ -15,7 +15,7 @@ export default function Work() {
         <span style={{ fontFamily: 'Epilogue, sans-serif', fontSize: 22, color: '#2D2D2D', lineHeight: 1 }}>→</span>
       </Link>
       <div className="work__cards" style={{ gap: 0 }}>
-        <div className="work__row" style={{ marginBottom: 80 }}>
+        <div className="work__row" style={{ marginBottom: 80, marginTop: 100 }}>
           {row1.map(card => <WorkCard key={card.id} card={card} />)}
         </div>
         <Link

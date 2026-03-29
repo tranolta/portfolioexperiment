@@ -95,6 +95,25 @@ body {
     transform: translateY(-6px);
 }
 
+.work__card--wip {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+.work__card-image--wip {
+    width: 315px;
+    height: 315px;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(45,45,45,0.06),
+        rgba(45,45,45,0.06) 10px,
+        rgba(45,45,45,0.02) 10px,
+        rgba(45,45,45,0.02) 20px
+    );
+    border: 2px dashed rgba(45,45,45,0.15);
+}
+
 /* Work card image zoom on hover */
 .work__card-image img {
     transition: transform 0.4s ease;

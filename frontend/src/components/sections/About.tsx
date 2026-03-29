@@ -1,115 +1,90 @@
-import { profile } from '../../data/profile'
-import { useInView } from '../../hooks/useInView'
+import { skillGroups } from '../../data/profile'
 
 export default function About() {
-  const { ref, inView } = useInView()
-
   return (
-    <section id="about" className="section" style={{ paddingTop: 'var(--pad-y)', paddingBottom: 'var(--pad-y)' }}>
+    <section
+      style={{
+        padding: '96px 0',
+        background: 'var(--c-surface)',
+        borderBottom: '1px solid var(--c-border)',
+      }}
+    >
       <div className="container">
-        {/* Section label */}
-        <div
+        <p
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-            marginBottom: 'clamp(2.5rem, 5vw, 4rem)',
+            fontFamily: 'var(--font-main)',
+            fontWeight: 600,
+            fontSize: 13,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: 'var(--c-text-muted)',
+            marginBottom: 16,
           }}
         >
-          <span className="section-index">02</span>
-          <div style={{ flex: 1, height: '1px', background: 'var(--c-border)' }} />
-          <span className="text-label" style={{ color: 'var(--c-muted)' }}>About</span>
-        </div>
+          Capabilities
+        </p>
+        <h2
+          style={{
+            fontFamily: 'var(--font-main)',
+            fontWeight: 800,
+            fontSize: 'clamp(32px, 4vw, 48px)',
+            letterSpacing: '-0.02em',
+            color: 'var(--c-text)',
+            marginBottom: 64,
+            maxWidth: 600,
+            lineHeight: 1.1,
+          }}
+        >
+          Three things that describe me are business, technology, and design.
+        </h2>
 
-        <div ref={ref} className={`reveal ${inView ? 'in-view' : ''}`}>
-          {/* Statement — the memorable one-liner */}
-          <p
-            className="text-statement"
-            style={{
-              color: 'var(--c-ink)',
-              maxWidth: '28ch',
-              marginBottom: 'clamp(1.5rem, 3vw, 2.5rem)',
-            }}
-          >
-            "{profile.positioning}"
-          </p>
-
-          {/* Bio — readable paragraph */}
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(1rem, 1.2vw, 1.1rem)',
-              color: 'var(--c-muted)',
-              lineHeight: 1.75,
-              maxWidth: '60ch',
-              marginBottom: 'clamp(2rem, 4vw, 3rem)',
-            }}
-          >
-            {profile.bio}
-          </p>
-
-          {/* Fast facts — scannable at a glance */}
-          <div
-            style={{
-              display: 'flex',
-              gap: '1px',
-              background: 'var(--c-border)',
-              marginBottom: 'clamp(2rem, 4vw, 3rem)',
-              flexWrap: 'wrap',
-            }}
-          >
-            {[
-              { label: 'Location',     value: profile.location },
-              { label: 'Experience',   value: '8 years' },
-              { label: 'Focus',        value: 'Design + Engineering' },
-              { label: 'Status',       value: profile.availability },
-            ].map(({ label, value }) => (
-              <div
-                key={label}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: 24,
+          }}
+        >
+          {skillGroups.map((group) => (
+            <div
+              key={group.category}
+              style={{
+                background: '#fff',
+                border: '1px solid var(--c-border)',
+                borderRadius: 4,
+                padding: '32px 28px',
+              }}
+            >
+              <h3
                 style={{
-                  background: 'var(--c-bg)',
-                  padding: '1.25rem 1.75rem',
-                  flex: '1 1 180px',
+                  fontFamily: 'var(--font-main)',
+                  fontWeight: 700,
+                  fontSize: 20,
+                  letterSpacing: '-0.01em',
+                  color: 'var(--c-text)',
+                  marginBottom: 16,
                 }}
               >
-                <p className="text-mono" style={{ color: 'var(--c-muted)', marginBottom: '0.3rem' }}>
-                  {label}
-                </p>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontWeight: 600,
-                    fontSize: '0.88rem',
-                    color: 'var(--c-ink)',
-                  }}
-                >
-                  {value}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Social links */}
-          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-            {profile.social.map(({ label, url }) => (
-              <a
-                key={label}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="arrow-link"
-                style={{
-                  color: 'var(--c-ink)',
-                  opacity: 0.5,
-                  transition: 'opacity 0.2s ease',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-                onMouseLeave={e => (e.currentTarget.style.opacity = '0.5')}
-              >
-                {label}
-              </a>
-            ))}
-          </div>
+                {group.category}
+              </h3>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {group.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    style={{
+                      fontFamily: 'var(--font-main)',
+                      fontWeight: 400,
+                      fontSize: 15,
+                      color: 'var(--c-text-muted)',
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>

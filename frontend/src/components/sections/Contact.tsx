@@ -1,185 +1,223 @@
 import { profile } from '../../data/profile'
-import { useInView } from '../../hooks/useInView'
+import { useState } from 'react'
 
 export default function Contact() {
-  const { ref, inView } = useInView(0.08)
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
   return (
     <section
       id="contact"
-      className="section-dark"
-      style={{ position: 'relative', overflow: 'hidden' }}
+      style={{
+        padding: '96px 0',
+        background: '#fff',
+      }}
     >
-      <div className="container">
-        {/* Section label */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-            marginBottom: 'clamp(4rem, 8vw, 8rem)',
-          }}
-        >
-          <span className="section-index" style={{ color: 'var(--c-dark-muted)' }}>
-            06
-          </span>
-          <div style={{ flex: 1, height: '1px', background: 'var(--c-dark-border)' }} />
-          <span className="text-label" style={{ color: 'var(--c-dark-muted)' }}>
-            Let's work
-          </span>
-        </div>
-
-        {/* Main CTA */}
-        <div ref={ref} className={`reveal ${inView ? 'in-view' : ''}`}>
-          <div
+      <div
+        className="container"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 80,
+          alignItems: 'start',
+        }}
+      >
+        {/* Left */}
+        <div>
+          <p
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'clamp(1.5rem, 3vw, 2.5rem)',
+              fontFamily: 'var(--font-main)',
+              fontWeight: 600,
+              fontSize: 13,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: 'var(--c-text-muted)',
+              marginBottom: 16,
             }}
           >
-            {/* Headline */}
-            <div>
-              <p
-                className="text-hero"
-                style={{
-                  color: 'var(--c-dark-text)',
-                  display: 'block',
-                  lineHeight: 0.88,
-                }}
-              >
-                Got a
-              </p>
-              <p
-                className="text-hero text-outline"
-                style={{
-                  color: 'var(--c-dark-text)',
-                  display: 'block',
-                  lineHeight: 0.88,
-                  marginTop: '-0.05em',
-                }}
-              >
-                project?
-              </p>
-            </div>
-
-            {/* Tagline */}
-            <p
+            Contact
+          </p>
+          <h2
+            style={{
+              fontFamily: 'var(--font-main)',
+              fontWeight: 800,
+              fontSize: 'clamp(36px, 4vw, 56px)',
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05,
+              color: 'var(--c-text)',
+              marginBottom: 24,
+            }}
+          >
+            Let's work together.
+          </h2>
+          <p
+            style={{
+              fontFamily: 'var(--font-main)',
+              fontWeight: 400,
+              fontSize: 16,
+              lineHeight: 1.65,
+              color: 'var(--c-text-muted)',
+              marginBottom: 40,
+            }}
+          >
+            Open to consulting, strategy, and product work. If you have something interesting to build or figure out, let's talk.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <a
+              href={`mailto:${profile.email}`}
               style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'clamp(1rem, 1.4vw, 1.2rem)',
-                color: 'var(--c-dark-muted)',
-                maxWidth: '46ch',
-                lineHeight: 1.65,
-              }}
-            >
-              I take on a small number of projects each year — enough to stay focused and do work I'm genuinely proud of. If you have something ambitious in mind, let's talk.
-            </p>
-
-            {/* Email button */}
-            <div style={{ paddingTop: '1rem' }}>
-              <a
-                href={`mailto:${profile.email}`}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  fontFamily: 'var(--font-display)',
-                  fontStyle: 'italic',
-                  fontWeight: 700,
-                  fontSize: 'clamp(1.2rem, 2.5vw, 2rem)',
-                  color: 'var(--c-dark-text)',
-                  borderBottom: '1px solid var(--c-dark-border)',
-                  paddingBottom: '0.5rem',
-                  transition: 'color 0.25s ease, border-color 0.25s ease',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.color = 'var(--c-dark-accent)'
-                  e.currentTarget.style.borderColor = 'var(--c-dark-accent)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.color = 'var(--c-dark-text)'
-                  e.currentTarget.style.borderColor = 'var(--c-dark-border)'
-                }}
-              >
-                {profile.email}
-                <span style={{ fontSize: '1.5em', lineHeight: 1 }}>↗</span>
-              </a>
-            </div>
-
-            {/* Social links */}
-            <div
-              style={{
+                fontFamily: 'var(--font-main)',
+                fontWeight: 500,
+                fontSize: 15,
+                color: 'var(--c-text)',
                 display: 'flex',
-                gap: '2rem',
-                paddingTop: '3rem',
-                borderTop: '1px solid var(--c-dark-border)',
-                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: 8,
               }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.5')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
             >
-              {profile.social.map(({ label, url }) => (
-                <a
-                  key={label}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontWeight: 600,
-                    fontSize: '0.72rem',
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    color: 'var(--c-dark-muted)',
-                    transition: 'color 0.2s ease',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--c-dark-text)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--c-dark-muted)')}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
+              {profile.email}
+            </a>
+            {profile.social.map(s => (
+              <a
+                key={s.label}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: 'var(--font-main)',
+                  fontWeight: 500,
+                  fontSize: 15,
+                  color: 'var(--c-text)',
+                  transition: 'opacity 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = '0.5')}
+                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+              >
+                {s.label} →
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Footer line */}
-        <div
-          style={{
-            marginTop: 'clamp(4rem, 8vw, 8rem)',
-            paddingTop: '2rem',
-            borderTop: '1px solid var(--c-dark-border)',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '1rem',
+        {/* Right — form */}
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+            window.location.href = `mailto:${profile.email}?subject=Hello from ${form.name}&body=${encodeURIComponent(form.message)}`
           }}
+          style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
         >
-          <span className="text-mono" style={{ color: 'var(--c-dark-muted)' }}>
-            {profile.name} — {new Date().getFullYear()}
-          </span>
-          <span className="text-mono" style={{ color: 'var(--c-dark-muted)' }}>
-            {profile.location}
-          </span>
-        </div>
-      </div>
+          {[
+            { name: 'name', label: 'Name', type: 'text', placeholder: 'Your name' },
+            { name: 'email', label: 'Email', type: 'email', placeholder: 'your@email.com' },
+          ].map(field => (
+            <div key={field.name} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <label
+                htmlFor={field.name}
+                style={{
+                  fontFamily: 'var(--font-main)',
+                  fontWeight: 600,
+                  fontSize: 13,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  color: 'var(--c-text-muted)',
+                }}
+              >
+                {field.label}
+              </label>
+              <input
+                id={field.name}
+                name={field.name}
+                type={field.type}
+                placeholder={field.placeholder}
+                value={form[field.name as 'name' | 'email']}
+                onChange={handleChange}
+                required
+                style={{
+                  fontFamily: 'var(--font-main)',
+                  fontWeight: 400,
+                  fontSize: 15,
+                  padding: '14px 16px',
+                  background: 'var(--c-surface)',
+                  border: '1px solid var(--c-border)',
+                  borderRadius: 2,
+                  color: 'var(--c-text)',
+                  outline: 'none',
+                  width: '100%',
+                }}
+                onFocus={e => (e.currentTarget.style.borderColor = 'var(--c-text)')}
+                onBlur={e => (e.currentTarget.style.borderColor = 'var(--c-border)')}
+              />
+            </div>
+          ))}
 
-      {/* Decorative background type */}
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          right: '-0.05em',
-          bottom: '-0.15em',
-          fontFamily: 'var(--font-condensed)',
-          fontSize: 'clamp(10rem, 28vw, 30rem)',
-          lineHeight: 1,
-          color: 'rgba(255,255,255,0.025)',
-          userSelect: 'none',
-          pointerEvents: 'none',
-        }}
-      >
-        HI
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <label
+              htmlFor="message"
+              style={{
+                fontFamily: 'var(--font-main)',
+                fontWeight: 600,
+                fontSize: 13,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                color: 'var(--c-text-muted)',
+              }}
+            >
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="What's on your mind?"
+              value={form.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              style={{
+                fontFamily: 'var(--font-main)',
+                fontWeight: 400,
+                fontSize: 15,
+                padding: '14px 16px',
+                background: 'var(--c-surface)',
+                border: '1px solid var(--c-border)',
+                borderRadius: 2,
+                color: 'var(--c-text)',
+                outline: 'none',
+                resize: 'vertical',
+                width: '100%',
+              }}
+              onFocus={e => (e.currentTarget.style.borderColor = 'var(--c-text)')}
+              onBlur={e => (e.currentTarget.style.borderColor = 'var(--c-border)')}
+            />
+          </div>
+
+          <button
+            type="submit"
+            style={{
+              fontFamily: 'var(--font-main)',
+              fontWeight: 600,
+              fontSize: 15,
+              letterSpacing: '0.04em',
+              padding: '16px 32px',
+              background: 'var(--c-text)',
+              color: '#fff',
+              border: 'none',
+              borderRadius: 2,
+              cursor: 'pointer',
+              alignSelf: 'flex-start',
+              transition: 'opacity 0.2s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '0.8')}
+            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+          >
+            Send message
+          </button>
+        </form>
       </div>
     </section>
   )

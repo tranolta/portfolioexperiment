@@ -1,31 +1,23 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
-/**
- * Returns a ref and a boolean indicating whether the element is in the viewport.
- * Once in-view, it stays true (fires once, then unobserves) for the scroll
- * reveal animation pattern.
- */
-export function useInView(threshold = 0.12) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [inView, setInView] = useState(false)
+export function useInView(threshold = 0.15) {
+  const ref = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
-
-    const observer = new IntersectionObserver(
+    const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true)
-          observer.unobserve(el)
+          el.classList.add('in-view')
+          obs.unobserve(el)
         }
       },
-      { threshold },
+      { threshold }
     )
-
-    observer.observe(el)
-    return () => observer.disconnect()
+    obs.observe(el)
+    return () => obs.disconnect()
   }, [threshold])
 
-  return { ref, inView }
+  return ref
 }

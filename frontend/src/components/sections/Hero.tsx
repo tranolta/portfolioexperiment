@@ -1,234 +1,148 @@
 import { profile } from '../../data/profile'
-import { skillGroups } from '../../data/profile'
-
-// Quick-scan capabilities shown in the hero — edit to match your actual skills
-const heroCapabilities = [
-  skillGroups[0].skills.slice(0, 3),  // first 3 design skills
-  skillGroups[1].skills.slice(0, 3),  // first 3 engineering skills
-].flat()
 
 export default function Hero() {
   return (
     <section
+      id="about"
       style={{
-        minHeight: '100dvh',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: `0 var(--pad-x)`,
-        paddingTop: '7rem',
-        paddingBottom: '3rem',
-        position: 'relative',
-        overflow: 'hidden',
+        padding: '100px 0 80px',
+        background: '#fff',
+        borderBottom: '1px solid var(--c-border)',
       }}
     >
-      {/* ── Top: availability badge ── */}
       <div
+        className="container"
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.6rem',
-          animation: 'fade-up 0.8s var(--ease-out) 0.3s both',
+          gap: 80,
         }}
       >
-        <span
-          style={{
-            display: 'inline-block',
-            width: '6px',
-            height: '6px',
-            borderRadius: '50%',
-            background: 'var(--c-signal)',
-            flexShrink: 0,
-          }}
-        />
-        <span className="text-mono" style={{ color: 'var(--c-muted)' }}>
-          {profile.availability}
-        </span>
-      </div>
-
-      {/* ── Giant name ── */}
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          position: 'relative',
-          marginTop: '2rem',
-          marginBottom: '2rem',
-        }}
-      >
-        <div
-          className="text-hero"
-          style={{
-            color: 'var(--c-ink)',
-            display: 'block',
-            animation: 'hero-in 1.4s var(--ease-out) 0.1s both',
-            userSelect: 'none',
-          }}
-        >
-          {profile.nameFirst}
-        </div>
-        <div
-          className="text-hero text-outline"
-          style={{
-            color: 'var(--c-ink)',
-            display: 'block',
-            marginTop: '-0.06em',
-            animation: 'hero-in 1.4s var(--ease-out) 0.22s both',
-            userSelect: 'none',
-          }}
-        >
-          {profile.nameLast}
-        </div>
-      </div>
-
-      {/* ── What I do — immediately readable ── */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '2rem clamp(3rem, 8vw, 8rem)',
-          paddingTop: '2rem',
-          borderTop: '1px solid var(--c-border)',
-          animation: 'fade-up 0.9s var(--ease-out) 0.8s both',
-        }}
-      >
-        {/* Left: role + positioning */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          <p
-            className="text-label"
-            style={{ color: 'var(--c-signal)', letterSpacing: '0.18em' }}
-          >
-            {profile.title}
-          </p>
+        {/* Left */}
+        <div style={{ flex: '1 1 auto' }}>
           <p
             style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
-              color: 'var(--c-ink)',
-              lineHeight: 1.6,
+              fontFamily: 'var(--font-main)',
+              fontWeight: 600,
+              fontSize: 15,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: 'var(--c-text-muted)',
+              marginBottom: 24,
+            }}
+          >
+            Business Strategy · AI · Systems Thinking
+          </p>
+
+          <h1
+            style={{
+              fontFamily: 'var(--font-main)',
+              fontWeight: 800,
+              fontSize: 'clamp(52px, 6vw, 80px)',
+              lineHeight: 1.0,
+              letterSpacing: '-0.03em',
+              color: 'var(--c-text)',
+              marginBottom: 32,
+            }}
+          >
+            {profile.nameFirst}
+            <br />
+            {profile.nameLast}.
+          </h1>
+
+          <p
+            style={{
+              fontFamily: 'var(--font-main)',
+              fontWeight: 400,
+              fontSize: 18,
+              lineHeight: 1.65,
+              color: 'var(--c-text-muted)',
+              maxWidth: 500,
+              marginBottom: 40,
             }}
           >
             {profile.positioning}
           </p>
-          <div style={{ display: 'flex', gap: '1.5rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
+
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             <a
               href="#work"
               style={{
-                fontFamily: 'var(--font-sans)',
-                fontWeight: 700,
-                fontSize: '0.78rem',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--c-bg)',
-                background: 'var(--c-vivid)',
-                padding: '0.65rem 1.4rem',
-                textDecoration: 'none',
-                transition: 'background 0.2s ease',
+                display: 'inline-block',
+                fontFamily: 'var(--font-main)',
+                fontWeight: 600,
+                fontSize: 15,
+                letterSpacing: '0.04em',
+                padding: '14px 28px',
+                background: 'var(--c-text)',
+                color: '#fff',
+                borderRadius: 2,
+                transition: 'opacity 0.2s',
               }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'var(--c-ink)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'var(--c-vivid)')}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.8')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
             >
-              See my work ↓
+              View Work
             </a>
             <a
               href={`mailto:${profile.email}`}
               style={{
-                fontFamily: 'var(--font-sans)',
+                display: 'inline-block',
+                fontFamily: 'var(--font-main)',
                 fontWeight: 600,
-                fontSize: '0.78rem',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'var(--c-ink)',
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                opacity: 0.6,
-                transition: 'opacity 0.2s ease',
+                fontSize: 15,
+                letterSpacing: '0.04em',
+                padding: '14px 28px',
+                background: 'transparent',
+                color: 'var(--c-text)',
+                border: '1.5px solid var(--c-text)',
+                borderRadius: 2,
+                transition: 'opacity 0.2s',
               }}
-              onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-              onMouseLeave={e => (e.currentTarget.style.opacity = '0.6')}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.5')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
             >
-              {profile.email}
+              Get in touch
             </a>
           </div>
         </div>
 
-        {/* Right: what I bring to the table — quick scan */}
-        <div>
-          <p className="text-label" style={{ color: 'var(--c-muted)', marginBottom: '0.75rem' }}>
-            What I do
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
-            {heroCapabilities.map(cap => (
-              <span
-                key={cap}
-                className="tag"
-                style={{ color: 'var(--c-ink)' }}
-              >
-                {cap}
-              </span>
-            ))}
-          </div>
+        {/* Right — photo */}
+        <div
+          style={{
+            flexShrink: 0,
+            width: 'clamp(260px, 30vw, 400px)',
+          }}
+        >
           <div
             style={{
-              display: 'flex',
-              gap: '2rem',
-              marginTop: '1.5rem',
-              paddingTop: '1.5rem',
-              borderTop: '1px solid var(--c-border)',
+              borderRadius: 4,
+              overflow: 'hidden',
+              background: 'var(--c-surface)',
+              aspectRatio: '4/5',
             }}
           >
-            <Stat value="8" label="Years exp." />
-            <Stat value="12M+" label="Users reached" />
-            <Stat value="3" label="Global cos." />
+            <img
+              src={profile.photo}
+              alt={profile.name}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                mixBlendMode: 'multiply',
+              }}
+            />
+          </div>
+          <div style={{ marginTop: 16 }}>
+            <p style={{ fontFamily: 'var(--font-main)', fontWeight: 600, fontSize: 14, color: 'var(--c-text)' }}>
+              {profile.name}
+            </p>
+            <p style={{ fontFamily: 'var(--font-main)', fontWeight: 400, fontSize: 14, color: 'var(--c-text-muted)' }}>
+              {profile.location}
+            </p>
           </div>
         </div>
       </div>
-
-      {/* Decorative background numeral */}
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          right: 'var(--pad-x)',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          fontFamily: 'var(--font-condensed)',
-          fontSize: 'clamp(8rem, 20vw, 22rem)',
-          color: 'var(--c-border)',
-          lineHeight: 1,
-          userSelect: 'none',
-          pointerEvents: 'none',
-          animation: 'fade-in 1.5s var(--ease-out) 0.5s both',
-          zIndex: 0,
-        }}
-      >
-        01
-      </div>
     </section>
-  )
-}
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-      <span
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontStyle: 'italic',
-          fontWeight: 700,
-          fontSize: '1.6rem',
-          lineHeight: 1,
-          color: 'var(--c-ink)',
-        }}
-      >
-        {value}
-      </span>
-      <span className="text-mono" style={{ color: 'var(--c-muted)', fontSize: '0.65rem' }}>
-        {label}
-      </span>
-    </div>
   )
 }

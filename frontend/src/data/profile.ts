@@ -9,9 +9,10 @@ export const profile: Profile = {
     'I work at the intersection of business strategy, AI, and systems thinking — building and shaping things that matter.',
   bio:
     'MSc student in Entrepreneurship and Business Design at Chalmers University of Technology, Gothenburg. I love AI, tech, and turning ambiguous problems into concrete systems. Currently building AI infrastructure at Chalmers, driving business development at an anti-hallucination AI startup, and completing a master thesis in innovation strategy at Autoliv.',
-  email: 'hello@johntran.se',
+  email: 'johntrann99@gmail.com',
+  photo: 'https://i.postimg.cc/TPb4Nf5W/Namnlo-s-design-(5).png',
   location: 'Gothenburg, Sweden',
-  availability: 'Open to consulting & analyst roles',
+  availability: '',
   social: [
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/lejohntran/' },
     { label: 'GitHub', url: '#' },

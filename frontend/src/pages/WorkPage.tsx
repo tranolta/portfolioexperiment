@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import Nav from '../components/Nav'
-import Footer from '../components/sections/Footer'
 import WorkCard from '../components/WorkCard'
 import { row1, row1Wip } from '../data/work'
 
 export default function WorkPage() {
+  useEffect(() => { window.scrollTo(0, 0) }, [])
+
   return (
     <>
       <Nav />
@@ -26,7 +28,6 @@ export default function WorkPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   )
 }

@@ -5,48 +5,28 @@ import { row1, row2 } from '../../data/work'
 export default function Work() {
   return (
     <section className="work" id="work">
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
+      <Link
+        to="/work"
+        style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, transition: 'opacity 0.2s' }}
+        onMouseEnter={e => (e.currentTarget.style.opacity = '0.5')}
+        onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+      >
         <h2 className="work__title" style={{ margin: 0 }}>My professional work</h2>
-        <Link
-          to="/work"
-          style={{
-            fontFamily: 'Epilogue, sans-serif',
-            fontSize: 22,
-            color: '#2D2D2D',
-            textDecoration: 'none',
-            lineHeight: 1,
-            transition: 'opacity 0.2s',
-          }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = '0.4')}
-          onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-          title="See all"
-        >
-          →
-        </Link>
-      </div>
+        <span style={{ fontFamily: 'Epilogue, sans-serif', fontSize: 22, color: '#2D2D2D', lineHeight: 1 }}>→</span>
+      </Link>
       <div className="work__cards" style={{ gap: 0 }}>
         <div className="work__row" style={{ marginBottom: 80 }}>
           {row1.map(card => <WorkCard key={card.id} card={card} />)}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 6, marginTop: 80 }}>
+        <Link
+          to="/hobbies"
+          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 6, marginTop: 80, transition: 'opacity 0.2s' }}
+          onMouseEnter={e => (e.currentTarget.style.opacity = '0.5')}
+          onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+        >
           <h2 className="work__title" style={{ margin: 0 }}>My fun fun fun hobbies</h2>
-          <Link
-            to="/hobbies"
-            style={{
-              fontFamily: 'Epilogue, sans-serif',
-              fontSize: 22,
-              color: '#2D2D2D',
-              textDecoration: 'none',
-              lineHeight: 1,
-              transition: 'opacity 0.2s',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.opacity = '0.4')}
-            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-            title="See all"
-          >
-            →
-          </Link>
-        </div>
+          <span style={{ fontFamily: 'Epilogue, sans-serif', fontSize: 22, color: '#2D2D2D', lineHeight: 1 }}>→</span>
+        </Link>
         <p style={{
           fontFamily: 'Epilogue, sans-serif',
           fontWeight: 400,

@@ -57,7 +57,7 @@ export default function WorkPage() {
                   marginBottom: 0,
                 }}
               >
-                <div style={{ maxWidth: 700, margin: '0 auto', width: '100%' }}>
+                <div style={{ maxWidth: 1100, margin: '0 auto', width: '100%' }}>
                   {/* Collapsible header */}
                   <button
                     onClick={() => toggle(group.id)}
@@ -101,7 +101,7 @@ export default function WorkPage() {
                   }}>
                     <div style={{ padding: '40px 24px 40px' }}>
                       {group.projects.length > 0 && (
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 40 }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
                           {group.projects.map(project => (
                             <ProjectCard key={project.id} card={project} />
                           ))}

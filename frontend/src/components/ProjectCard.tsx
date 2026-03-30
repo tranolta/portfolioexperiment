@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import type { Card } from '../data/work'
 import CampusVisionTechStack from './CampusVisionTechStack'
 import ChalmersGoTechStack from './ChalmersGoTechStack'
+import CampusFlowTechStack from './CampusFlowTechStack'
 
 export default function ProjectCard({ card }: { card: Card }) {
   const [open, setOpen] = useState(false)
@@ -19,7 +20,7 @@ export default function ProjectCard({ card }: { card: Card }) {
       <div
         onClick={() => setOpen(true)}
         style={{
-          width: 300,
+          width: '100%',
           fontFamily: 'Epilogue, sans-serif',
           cursor: 'pointer',
         }}
@@ -84,7 +85,7 @@ export default function ProjectCard({ card }: { card: Card }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '40px 16px',
+            padding: '24px 12px',
             backdropFilter: 'blur(4px)',
           }}
         >
@@ -92,7 +93,7 @@ export default function ProjectCard({ card }: { card: Card }) {
             onClick={e => e.stopPropagation()}
             style={{
               background: '#fff',
-              maxWidth: 1100,
+              maxWidth: 1300,
               width: '100%',
               maxHeight: '85vh',
               overflowY: 'auto',
@@ -261,7 +262,7 @@ export default function ProjectCard({ card }: { card: Card }) {
                     >
                       ✕
                     </button>
-                    {card.id === 'chalmers-go' ? <ChalmersGoTechStack /> : <CampusVisionTechStack />}
+                    {card.id === 'chalmers-go' ? <ChalmersGoTechStack /> : card.id === 'campus-flow' ? <CampusFlowTechStack /> : <CampusVisionTechStack />}
                   </div>
                 </div>
               )}

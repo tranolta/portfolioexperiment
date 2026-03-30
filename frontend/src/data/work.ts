@@ -66,6 +66,24 @@ The technical challenge was that the images are 360 degree panoramic, meaning ob
         ],
       },
       {
+        id: 'campus-flow',
+        image: '/images/project-campusflow.png',
+        video: '/images/project-campusflow.mp4',
+        title: 'Campus Forecast & Flow',
+        tagline: 'Campus movement platform',
+        hasTechStack: true,
+        isProject: true,
+        description: `I built a campus movement intelligence platform that processes millions of location records from connected devices across a university campus. The system ingests and parses multi-gigabyte JSON datasets using memory-mapped streaming techniques to handle data that exceeds available RAM.
+
+What makes the prediction model interesting is the feature set. I combined three data sources: historical movement patterns showing where users have gone at every time of day and day of week, real-time and historical weather data pulled from the SMHI API (Sweden's national meteorological institute), and CO2 sensor readings from building sensors across campus, which act as a proxy for occupancy and air quality.
+
+The intuition is that movement behavior is not just habitual, it is environmental. People avoid walking between buildings in heavy rain, they leave crowded rooms when CO2 spikes, and lecture-driven patterns shift depending on the weather. A Random Forest classifier learns those combined signals and predicts a user's most likely next destination with a confidence score.
+
+The model is served via a Flask REST API and the frontend visualizes everything on an interactive Google Maps interface, showing historical playback, live prediction overlays, and predicted vs actual path comparisons. Routes are pre-cached to minimize Google API calls.
+
+The practical applications are space utilization, HVAC optimization based on predicted occupancy, campus safety, and event planning.`,
+      },
+      {
         id: 'chalmers-go',
         image: '/images/project-chalmers-go.png',
         title: 'Chalmers GO',

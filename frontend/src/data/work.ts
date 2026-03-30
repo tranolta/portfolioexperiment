@@ -5,6 +5,8 @@ export type Card = {
   description: string
   tagline?: string
   video?: string
+  techStack?: { category: string; tools: string[]; note?: string }[]
+  hasTechStack?: boolean
   link?: { text: string; href: string }
   wip?: boolean
   isProject?: boolean
@@ -38,15 +40,37 @@ export const workGroups: WorkGroup[] = [
         image: '/images/project-campusvision.png',
         video: '/images/project-campusvision.mp4',
         title: 'Campus Vision',
+        hasTechStack: true,
         tagline: 'AI-powered image understanding and object detection',
         isProject: true,
-        description: `AI-powered image understanding and object detection`,
+        description: `I built a computer vision platform for my university campus that started as a room search tool for students.
+
+The idea was simple: you need a room with a projector and 8 chairs, but there's no way to search for that. You just walk around hoping to find something.
+
+So I took 700 panoramic photos of campus rooms and ran them through Google's AI vision model to detect and count everything inside each room, chairs, TVs, whiteboards, windows, all of it. That data gets stored so when you search, it's instant. You just type what you need in plain English and it returns the best matching rooms, ranked by relevance, with photos.
+
+But the real potential goes further than search. Because the system knows exactly what's in every room and how many, it opens the door to things like inventory management, asset tracking, and space utilization analysis, all from just photos.
+
+The technical challenge was that the images are 360 degree panoramic, meaning objects wrap around the edges of the photo. I built custom logic to handle that so detections don't get missed.`,
+        techStack: [
+          { category: 'Language',          tools: ['Python', 'TypeScript'] },
+          { category: 'Backend',           tools: ['Flask'] },
+          { category: 'Frontend',          tools: ['React', 'TypeScript', 'HTML'] },
+          { category: 'Primary AI',        tools: ['Google Gemini 2.5 Pro'], note: 'analyzes room images' },
+          { category: 'Object Detection',  tools: ['YOLOv8'], note: 'validates Gemini results' },
+          { category: 'Panoramic ML',      tools: ['Panoramic-BlitzNet CNN'], note: 'specialized 360° model' },
+          { category: 'Computer Vision',   tools: ['OpenCV', 'Pillow'] },
+          { category: 'Deep Learning',     tools: ['PyTorch', 'TensorFlow'] },
+          { category: 'Data',              tools: ['CSV', 'JSON cache'] },
+          { category: 'Infrastructure',    tools: ['Docker', 'Google Cloud Run', 'Heroku'] },
+        ],
       },
       {
         id: 'chalmers-go',
         image: '/images/project-chalmers-go.png',
         title: 'Chalmers GO',
         tagline: 'AR indoor navigation app',
+        hasTechStack: true,
         isProject: true,
         description: `I built an AR indoor navigation app — think Google Maps Live View, but for navigating inside buildings.
 

@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 import type { Card } from '../data/work'
+import CampusVisionTechStack from './CampusVisionTechStack'
+import ChalmersGoTechStack from './ChalmersGoTechStack'
 
 export default function ProjectCard({ card }: { card: Card }) {
   const [open, setOpen] = useState(false)
+  const [techOpen, setTechOpen] = useState(false)
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -81,7 +84,7 @@ export default function ProjectCard({ card }: { card: Card }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '40px 24px',
+            padding: '40px 16px',
             backdropFilter: 'blur(4px)',
           }}
         >
@@ -89,7 +92,7 @@ export default function ProjectCard({ card }: { card: Card }) {
             onClick={e => e.stopPropagation()}
             style={{
               background: '#fff',
-              maxWidth: 900,
+              maxWidth: 1100,
               width: '100%',
               maxHeight: '85vh',
               overflowY: 'auto',
@@ -190,7 +193,78 @@ export default function ProjectCard({ card }: { card: Card }) {
                     {para}
                   </p>
                 ))}
+                {card.hasTechStack && (
+                  <button
+                    onClick={e => { e.stopPropagation(); setTechOpen(true) }}
+                    style={{
+                      marginTop: 8,
+                      fontFamily: 'Epilogue, sans-serif',
+                      fontWeight: 600,
+                      fontSize: 13,
+                      color: '#2D2D2D',
+                      background: 'none',
+                      border: '1.5px solid #2D2D2D',
+                      padding: '8px 20px',
+                      cursor: 'pointer',
+                      transition: 'opacity 0.2s',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.opacity = '0.5')}
+                    onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+                  >
+                    Tech Stack
+                  </button>
+                )}
               </div>
+
+              {/* Tech Stack nested modal */}
+              {techOpen && (
+                <div
+                  onClick={e => { e.stopPropagation(); setTechOpen(false) }}
+                  style={{
+                    position: 'fixed',
+                    inset: 0,
+                    background: 'rgba(0,0,0,0.6)',
+                    zIndex: 1100,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '40px 24px',
+                    backdropFilter: 'blur(4px)',
+                  }}
+                >
+                  <div
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      maxWidth: 900,
+                      width: '100%',
+                      maxHeight: '90vh',
+                      overflowY: 'auto',
+                      position: 'relative',
+                    }}
+                  >
+                    <button
+                      onClick={() => setTechOpen(false)}
+                      style={{
+                        position: 'absolute',
+                        top: 12,
+                        right: 16,
+                        background: 'none',
+                        border: 'none',
+                        fontSize: 22,
+                        cursor: 'pointer',
+                        color: 'rgba(45,45,45,0.5)',
+                        zIndex: 10,
+                        transition: 'color 0.2s',
+                      }}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#2D2D2D')}
+                      onMouseLeave={e => (e.currentTarget.style.color = 'rgba(45,45,45,0.5)')}
+                    >
+                      ✕
+                    </button>
+                    {card.id === 'chalmers-go' ? <ChalmersGoTechStack /> : <CampusVisionTechStack />}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

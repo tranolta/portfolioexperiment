@@ -22,7 +22,10 @@ export default function WorkPage() {
             </Link>
           </div>
 
-          <h2 className="work__title" style={{ marginBottom: 12 }}>My professional work</h2>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, marginBottom: 12 }}>
+            <h2 className="work__title" style={{ margin: 0 }}>My professional work</h2>
+            <img src="/images/thanku.png" alt="thank u" style={{ width: 72, height: 72, objectFit: 'contain' }} />
+          </div>
           <p style={{
             fontFamily: 'Epilogue, sans-serif',
             fontWeight: 400,
@@ -32,7 +35,7 @@ export default function WorkPage() {
             marginBottom: 48,
             fontStyle: 'italic',
           }}>
-            I'm currently still building this page...
+            This page is a work in progress, thank you for being patient
           </p>
 
           {workGroups.map((group, i) => {

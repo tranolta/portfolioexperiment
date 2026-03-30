@@ -40,7 +40,7 @@ export const row2: Card[] = [
     id: 'hackathons',
     image: '/images/work-hackathons.png',
     title: 'Hackathons...',
-    description: "This is something I'm recently getting into! My friend and I attended our very first hackathon as part of our school. We decided to build a tool that can find you great food & wine recommendations... and we were crowned the winners!",
+    description: "This is something I'm recently getting into! My friend and I attended our very first hackathon as part of our school. We decided to build a tool that can find you great food & wine recommendations based on image recognition... and we were crowned the winners!",
   },
   {
     id: 'design',

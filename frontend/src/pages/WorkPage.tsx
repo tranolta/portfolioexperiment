@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import ProjectCard from '../components/ProjectCard'
 import { workGroups } from '../data/work'
 
 export default function WorkPage() {
+  const [searchParams] = useSearchParams()
+  const openParam = searchParams.get('open')
+
   useEffect(() => { window.scrollTo(0, 0) }, [])
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({})
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
+    openParam ? { [openParam]: true } : {}
+  )
 
   const toggle = (id: string) =>
     setOpenGroups(prev => ({ ...prev, [id]: !prev[id] }))

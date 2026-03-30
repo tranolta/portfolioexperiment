@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import WorkCard from '../WorkCard'
-import { row1, row2 } from '../../data/work'
+import { workGroups, row2 } from '../../data/work'
 
 export default function Work() {
   return (
@@ -16,7 +16,9 @@ export default function Work() {
       </Link>
       <div className="work__cards" style={{ gap: 0 }}>
         <div className="work__row" style={{ marginBottom: 80, marginTop: 100 }}>
-          {row1.map(card => <WorkCard key={card.id} card={card} />)}
+          {workGroups.map(group => (
+            <WorkCard key={group.employer.id} card={group.employer} linkTo={`/work?open=${group.id}`} />
+          ))}
         </div>
         <Link
           to="/hobbies"

@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 import type { Card } from '../data/work'
 
-export default function WorkCard({ card }: { card: Card }) {
+export default function WorkCard({ card, linkTo }: { card: Card; linkTo?: string }) {
+  const navigate = useNavigate()
+
   if (card.wip) {
     return (
       <article className="work__card work__card--wip">
@@ -14,7 +17,11 @@ export default function WorkCard({ card }: { card: Card }) {
   }
 
   return (
-    <article className="work__card">
+    <article
+      className="work__card"
+      onClick={linkTo ? () => navigate(linkTo) : undefined}
+      style={linkTo ? { cursor: 'pointer' } : undefined}
+    >
       <div className="work__card-image">
         <img src={card.image} alt={card.title} />
       </div>

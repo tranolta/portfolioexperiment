@@ -1,31 +1,116 @@
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
-import WorkCard from '../components/WorkCard'
-import { row1, row1Wip } from '../data/work'
+import ProjectCard from '../components/ProjectCard'
+import { workGroups } from '../data/work'
 
 export default function WorkPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({})
+
+  const toggle = (id: string) =>
+    setOpenGroups(prev => ({ ...prev, [id]: !prev[id] }))
 
   return (
     <>
       <Nav />
       <main>
-        <section className="work" id="work">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 40 }}>
-            <Link to="/" style={{ fontFamily: 'Epilogue, sans-serif', fontSize: 14, color: 'rgba(45,45,45,0.45)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>
+        <section className="work" id="work" style={{ paddingBottom: 120 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 60 }}>
+            <Link to="/" style={{ fontFamily: 'Epilogue, sans-serif', fontSize: 14, color: 'rgba(45,45,45,0.45)', textDecoration: 'none' }}>
               ← Back
             </Link>
           </div>
-          <h2 className="work__title">My professional work</h2>
-          <div className="work__cards" style={{ gap: 0 }}>
-            <div className="work__row" style={{ marginBottom: 40 }}>
-              {row1.map(card => <WorkCard key={card.id} card={card} />)}
-            </div>
-            <div className="work__row">
-              {row1Wip.map(card => <WorkCard key={card.id} card={card} />)}
-            </div>
-          </div>
+
+          <h2 className="work__title" style={{ marginBottom: 12 }}>My professional work</h2>
+          <p style={{
+            fontFamily: 'Epilogue, sans-serif',
+            fontWeight: 400,
+            fontSize: 15,
+            color: 'rgba(45,45,45,0.45)',
+            textAlign: 'center',
+            marginBottom: 48,
+            fontStyle: 'italic',
+          }}>
+            I'm currently still building this page...
+          </p>
+
+          {workGroups.map((group, i) => {
+            const isOpen = !!openGroups[group.id]
+            return (
+              <div
+                key={group.id}
+                style={{
+                  width: '100vw',
+                  position: 'relative',
+                  left: '50%',
+                  right: '50%',
+                  marginLeft: '-50vw',
+                  marginRight: '-50vw',
+                  borderTop: i === 0 ? '1.5px solid rgba(45,45,45,0.1)' : 'none',
+                  borderBottom: '1.5px solid rgba(45,45,45,0.1)',
+                  background: isOpen ? group.color : 'transparent',
+                  transition: 'background 0.3s ease',
+                  marginBottom: 0,
+                }}
+              >
+                <div style={{ maxWidth: 700, margin: '0 auto', width: '100%' }}>
+                  {/* Collapsible header */}
+                  <button
+                    onClick={() => toggle(group.id)}
+                    style={{
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '20px 24px',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontFamily: 'Epilogue, sans-serif',
+                      textAlign: 'left',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                      <img
+                        src={group.logo}
+                        alt={group.groupTitle}
+                        style={{ height: 28, width: 'auto', objectFit: 'contain', opacity: 0.85 }}
+                      />
+                      <span style={{ fontWeight: 600, fontSize: 20, color: '#2D2D2D' }}>
+                        {group.groupTitle}
+                      </span>
+                    </div>
+                    <span style={{
+                      fontSize: 13,
+                      color: 'rgba(45,45,45,0.4)',
+                      display: 'inline-block',
+                      transition: 'transform 0.3s ease',
+                      transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                    }}>▼</span>
+                  </button>
+
+                  {/* Collapsible content */}
+                  <div style={{
+                    overflow: 'hidden',
+                    maxHeight: isOpen ? '2000px' : '0px',
+                    transition: 'max-height 0.5s ease',
+                  }}>
+                    <div style={{ padding: '40px 24px 40px' }}>
+                      {group.projects.length > 0 && (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 40 }}>
+                          {group.projects.map(project => (
+                            <ProjectCard key={project.id} card={project} />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+
         </section>
       </main>
     </>

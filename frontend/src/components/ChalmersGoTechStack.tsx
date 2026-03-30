@@ -63,6 +63,11 @@ export default function ChalmersGoTechStack() {
               {diamond('linear-gradient(135deg,#e85030,#c04020)', 155, 78, 'Frontend', 'HTML Templates', 8, 0.67, 0.85)}
             </div>
 
+            {sectionLabel('AR / Mobile', '#20a060')}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              {diamond('linear-gradient(135deg,#20a060,#108040)', 220, 110, 'AR / Mobile', 'ARKit (iOS)', 8, 0.95)}
+            </div>
+
             {sectionLabel('BIM & Geometry', '#2080a0')}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               {diamond('linear-gradient(135deg,#2080a0,#106080)', 230, 115, 'BIM / IFC', 'ifcopenshell', -36, 0.97)}
@@ -91,6 +96,10 @@ export default function ChalmersGoTechStack() {
               {rgItem('Python 3.10', 'Primary language for backend logic, pathfinding, and IFC parsing', '#e85030')}
               {rgItem('Flask', 'Lightweight web server exposing the routing API to the mobile app', '#d06040')}
               {rgItem('Plain HTML templates', 'Simple server-rendered views for any web-facing UI', '#b08870')}
+            </div>
+            <div style={{ marginBottom: 20 }}>
+              {rgTitle('AR / Mobile', '#20a060')}
+              {rgItem('ARKit (iOS client)', 'Apple\'s AR framework — handles spatial tracking, camera understanding, and anchoring 3D arrows to real-world surfaces', '#20a060')}
             </div>
             <div style={{ marginBottom: 20 }}>
               {rgTitle('BIM & Geometry', '#2080a0')}

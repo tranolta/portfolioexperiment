@@ -116,7 +116,7 @@ On the mobile side I used Xcode and Apple's ARKit — which handles all the hard
     projects: [
       {
         id: 'autoliv-value',
-        image: '',
+        image: '/images/project-autoliv-value.png',
         title: 'Transforming a Component Company into a Value Company',
         tagline: 'Strategic repositioning from parts to solutions',
         isProject: true,
@@ -126,7 +126,7 @@ This includes studying customer needs, identifying pain points connected to safe
       },
       {
         id: 'autoliv-accelerators',
-        image: '',
+        image: '/images/project-autoliv-accelerators.png',
         title: 'Using the World\'s Largest Accelerators to Improve Innovativity',
         tagline: 'Applying startup accelerator models to large organizations',
         isProject: true,
@@ -136,9 +136,9 @@ From there, I explore how these principles can be translated into a large organi
       },
       {
         id: 'autoliv-research',
-        image: '',
+        image: '/images/project-autoliv-research.png',
         title: 'Cross-functional Collaborative Research',
-        tagline: 'Breaking silos to drive innovation across departments',
+        tagline: 'Studying innovation across nine organizations in different industries',
         isProject: true,
         description: `As part of my thesis, I work in cross-collaborative research with CPAC Systems, CampX, Mont Blanc Group, Vattenfall, VGR Sahlgrenska, Autoliv, JENSEN Sweden, Volvo Penta, and the Swedish Maritime Administration.
 

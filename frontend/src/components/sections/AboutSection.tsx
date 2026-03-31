@@ -1,12 +1,6 @@
 import { useState } from 'react'
 import TimelineSlider from '../TimelineSlider'
 
-const paragraphs = [
-  "A big part of who I am is that I like building things from ideas that are still messy and undefined. I enjoy working in environments where there is uncertainty, where you need to think for yourself, talk to people, test things, and slowly shape something into place. That's probably why I've been drawn to startups, innovation projects, and creative technical work. I like the process of taking something abstract and making it real.",
-  "At the core, I think I've always been interested in systems. When I was younger, I was fascinated by games — not just because they were fun, but because I liked understanding how they worked, why they worked, and how they could be improved. I think that same mindset still follows me today. Whether I'm working with AI, product ideas, strategy, or technical development, I'm motivated by understanding what is going on beneath the surface and finding better ways forward.",
-  "I'd say I'm someone who is analytical, curious, and reflective, but also creative. I care a lot about making things that feel thoughtful and useful, not just impressive on paper. For me, the most meaningful work is where I get to combine problem-solving with creativity and build things that have a real purpose.",
-]
-
 export default function AboutSection() {
   const [expanded, setExpanded] = useState(false)
 

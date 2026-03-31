@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import TimelineSlider from '../TimelineSlider'
 
 const paragraphs = [
   "A big part of who I am is that I like building things from ideas that are still messy and undefined. I enjoy working in environments where there is uncertainty, where you need to think for yourself, talk to people, test things, and slowly shape something into place. That's probably why I've been drawn to startups, innovation projects, and creative technical work. I like the process of taking something abstract and making it real.",
@@ -12,7 +13,7 @@ export default function AboutSection() {
   return (
     <>
       {/* Section title */}
-      <div style={{ padding: '60px 100px 0', background: '#fff', textAlign: 'center' }}>
+      <div style={{ padding: '60px 100px 60px', background: '#fff', textAlign: 'center' }}>
         <h2 style={{
           fontFamily: 'Epilogue, sans-serif',
           fontWeight: 600,
@@ -62,9 +63,7 @@ export default function AboutSection() {
             }}
           >
             <div className="about-body__text" style={{ paddingBottom: 8 }}>
-              {paragraphs.map((p, i) => (
-                <p key={i} className="about-body__paragraph">{p}</p>
-              ))}
+              <TimelineSlider />
             </div>
           </div>
 

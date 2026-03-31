@@ -104,7 +104,7 @@ On the mobile side I used Xcode and Apple's ARKit — which handles all the hard
   },
   {
     id: 'autoliv-group',
-    groupTitle: 'Business Developer at Autoliv',
+    groupTitle: 'Business Developer, Master Thesis @ Autoliv',
     logo: '/images/logo-autoliv.png',
     color: '#F9E6F0',
     employer: {

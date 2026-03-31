@@ -120,7 +120,9 @@ On the mobile side I used Xcode and Apple's ARKit — which handles all the hard
         title: 'Transforming a Component Company into a Value Company',
         tagline: 'Strategic repositioning from parts to solutions',
         isProject: true,
-        description: ``,
+        description: `At Autoliv, I explore how a company known for selling physical safety components can create value in broader ways. More specifically, I look at how Autoliv's strengths in safety engineering, validation, and system knowledge can be turned into offerings that matter more directly to OEMs.
+
+This includes studying customer needs, identifying pain points connected to safety integration and future requirements, and exploring what types of added value could sit around the component itself. A key part of the work is understanding how a traditional tier-one supplier can move from a product-based logic toward a stronger value-based logic, where what is offered is not only a part, but also insight, capability, and a clearer contribution to the customer's broader goals.`,
       },
       {
         id: 'autoliv-accelerators',
@@ -128,7 +130,9 @@ On the mobile side I used Xcode and Apple's ARKit — which handles all the hard
         title: 'Using the World\'s Largest Accelerators to Improve Innovativity',
         tagline: 'Applying startup accelerator models to large organizations',
         isProject: true,
-        description: ``,
+        description: `In my thesis work, I study what makes the world's largest accelerators, such as Y Combinator, so effective at helping ideas move quickly from early concept to real progress. The focus is on identifying the mechanisms behind that success, such as speed, structured feedback, pressure to validate, strong founder ownership, and a clear bias toward action.
+
+From there, I explore how these principles can be translated into a large organization like Autoliv, where innovation often happens under very different conditions. Rather than copying startup methods blindly, the work is about understanding which parts of accelerator logic actually create momentum and whether those same principles can help strengthen how ideas are supported, challenged, and moved forward inside a complex corporate setting. As part of this, we are running a workshop series to examine whether these ideas hold up in practice.`,
       },
       {
         id: 'autoliv-research',
@@ -136,7 +140,9 @@ On the mobile side I used Xcode and Apple's ARKit — which handles all the hard
         title: 'Cross-functional Collaborative Research',
         tagline: 'Breaking silos to drive innovation across departments',
         isProject: true,
-        description: ``,
+        description: `As part of my thesis, I work in cross-collaborative research with CPAC Systems, CampX, Mont Blanc Group, Vattenfall, VGR Sahlgrenska, Autoliv, JENSEN Sweden, Volvo Penta, and the Swedish Maritime Administration.
+
+The work is structured through the modules strategy and structure, entrepreneurial finance, organizational change, managing intellectual assets, organizational friction, and transformational leadership. In practice, this means studying how different organizations approach innovation, where ideas get stuck, and what factors shape whether they move forward or not. What makes this especially valuable is the chance to compare patterns across very different industries and use lessons from one organization to sharpen the understanding of another.`,
       },
     ],
   },
@@ -151,7 +157,31 @@ On the mobile side I used Xcode and Apple's ARKit — which handles all the hard
       title: 'Intern @Talkamatic',
       description: 'Volunteer at Talkamatic, a GU Ventures startup. Doing everything from handling communication material and building graphics to being a representative at events',
     },
-    projects: [],
+    projects: [
+      {
+        id: 'talkamatic-marketing',
+        image: '',
+        title: 'Brand & Communication',
+        tagline: 'Marketing, graphics, and event representation',
+        isProject: true,
+        description: ``,
+        wip: false,
+      },
+      {
+        id: 'talkamatic-wip-1',
+        image: '',
+        title: 'Coming soon...',
+        description: '',
+        wip: true,
+      },
+      {
+        id: 'talkamatic-wip-2',
+        image: '',
+        title: 'Coming soon...',
+        description: '',
+        wip: true,
+      },
+    ],
   },
 ]
 

@@ -179,7 +179,7 @@ export default function ProjectCard({ card }: { card: Card }) {
                     marginTop: 6,
                     width: card.video ? 340 : 240,
                   }}>
-                    {card.video ? 'Demo' : 'Early Iteration of app'}
+                    {card.video ? 'Demo' : ''}
                   </p>
                 </div>
               )}

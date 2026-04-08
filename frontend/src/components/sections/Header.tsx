@@ -1,61 +1,137 @@
+import { profile } from '../../data/profile'
+
+const ASCII_PORTRAIT = `
+
+
+
+              ......:==:.
+             .-#@%%@@@@%%=.
+            .#@%+======#%@#.
+           .%@*+===----==+@+
+           +@%*+==----=+==+@*.
+           =@##+===------==%:
+           .%+++*+-=---=--=*.
+           .##===-==-------=.
+           .%%*=--++=+------.
+           .+%*+=-==-------:.
+            .:#+==+=====---.
+              +#++==----==..
+             .=%#*+=======..
+          ..-%%*##**+==--=#:..
+       .:*%%%%*+++++==----#%%#+:.
+...-=*%@%%%%%*-======-----###%%##*=.
+:#%%%%%%%%%@@%+::--------::*#######.
+:#%%%%%#%%%%@@%=::::::--::.:+######.
+=%######%%%%%@%=::::.......:+#***#*.
+-%%#####%%%%%%%#=:::::.:...::=#****.
+-%%%####%%%%%%%%#=:::::.....::=#***.
+.%%%%####%%%%%%%%%+:::.......::=#**.
+.+%%%%%%%%%%#%%%%%%+:........:::=**.`
+
+const ASCII_NAME = `     ██╗ ██████╗ ██╗  ██╗███╗   ██╗    ████████╗██████╗  █████╗ ███╗   ██╗
+     ██║██╔═══██╗██║  ██║████╗  ██║    ╚══██╔══╝██╔══██╗██╔══██╗████╗  ██║
+     ██║██║   ██║███████║██╔██╗ ██║       ██║   ██████╔╝███████║██╔██╗ ██║
+██   ██║██║   ██║██╔══██║██║╚██╗██║       ██║   ██╔══██╗██╔══██║██║╚██╗██║
+╚█████╔╝╚██████╔╝██║  ██║██║ ╚████║       ██║   ██║  ██║██║  ██║██║ ╚████║
+ ╚════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝       ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝`
+
+const capabilities = [
+  { verb: 'Understand', detail: 'Problems, systems, people',              sub: 'turning messy situations into something clear' },
+  { verb: 'Build',      detail: 'AI prototypes, data pipelines, backend', sub: 'FastAPI, Python, LLM workflows' },
+  { verb: 'Apply AI',   detail: 'Use cases > hype',                       sub: 'finding where AI actually creates value' },
+  { verb: 'Explore',    detail: 'Ideas, edge cases, rabbit holes',         sub: 'constant curiosity, fast learning loops' },
+  { verb: 'Translate',  detail: 'Tech → value, data → decisions',         sub: 'making things useful, not just working' },
+  { verb: 'Test',       detail: 'MVPs, assumptions, real-world feedback',  sub: 'build → learn → iterate' },
+  { verb: 'Own',        detail: 'Projects, ambiguity, direction',          sub: 'starting before everything is defined' },
+]
+
+const tools = ['Python', 'FastAPI', 'SQL', 'APIs', 'OpenAI', 'Claude', 'RAG', 'PowerBI', 'Excel']
+
 export default function Header() {
+  const githubUrl = profile.social.find(s => s.label === 'GitHub')?.url ?? '#'
+
   return (
-    <header className="header" id="about">
-      <div className="header__content">
-        <div className="header__text" style={{ position: 'relative', overflow: 'visible' }}>
+    <header className="terminal-hero" id="about">
+      <div className="th-inner">
 
-          {/* Decorative spinning symbols — each has its own animation string so speeds are truly independent */}
-          <span style={{
-            position: 'absolute', top: -28, left: -44,
-            fontSize: 32, opacity: 0.45, pointerEvents: 'none', userSelect: 'none',
-            display: 'inline-block',
-            animation: 'spin-slow 10s linear infinite',
-          }}>✦</span>
-          <span style={{
-            position: 'absolute', top: 12, left: -20,
-            fontSize: 14, opacity: 0.35, pointerEvents: 'none', userSelect: 'none',
-            display: 'inline-block',
-            animation: 'spin-slow 16s linear infinite reverse',
-          }}>★</span>
-          <span style={{
-            position: 'absolute', bottom: 48, right: -32,
-            fontSize: 22, opacity: 0.4, pointerEvents: 'none', userSelect: 'none',
-            display: 'inline-block',
-            animation: 'spin-slow 7s linear infinite',
-          }}>✦</span>
-          <span style={{
-            position: 'absolute', top: '45%', right: -48,
-            fontSize: 11, opacity: 0.3, pointerEvents: 'none', userSelect: 'none',
-            display: 'inline-block',
-            animation: 'spin-slow 20s linear infinite reverse',
-          }}>✳</span>
+        {/* Window chrome */}
+        <div className="th-topbar">
+          <div className="th-topbar-left">
+            <span className="th-dot th-dot--r" />
+            <span className="th-dot th-dot--y" />
+            <span className="th-dot th-dot--g" />
+            <span className="th-topbar-label">tranolta@portfolioexperiment ~ bash</span>
+          </div>
+          <nav className="th-nav">
+            <a href="#about-me" className="th-nav-link">about</a>
+            <a href="#work"    className="th-nav-link">work</a>
+            <a href="#contact" className="th-nav-link">contact</a>
+          </nav>
+        </div>
 
-          <div>
-            <p className="header__greeting">Hello, my name is...</p>
-          </div>
-          <div>
-            <h1 className="header__name">John Tran</h1>
-          </div>
-          <p className="header__description">
-            MSc Entrepreneurship and Business Design*<br />
-            BSc Civil and Environmental Engineering
-          </p>
-          <p style={{
-            fontFamily: 'Epilogue, sans-serif',
-            fontSize: 12,
-            fontWeight: 400,
-            color: 'rgba(45,45,45,0.5)',
-            marginTop: 6,
-          }}>
-            *Expected graduation June 2026
-          </p>
+        {/* ASCII name banner */}
+        <div className="th-banner">
+          <pre className="th-ascii-name">{ASCII_NAME}</pre>
         </div>
-        <div className="header__image">
-          <img
-            src="/images/profile.png"
-            alt="John Tran portrait"
-          />
+
+        <div className="th-welcome">Welcome, this is my portfolio that is very much work in progress. Currently deciding what visual theme to go for as well as adding content...</div>
+
+        {/* Two-column body */}
+        <div className="th-cols">
+
+          {/* Portrait + identity */}
+          <div className="th-portrait">
+            <pre>{ASCII_PORTRAIT}</pre>
+            <div className="th-identity">
+              <div className="th-iname">John Tran</div>
+              <div className="th-irole">MSc Entrepreneurship &amp; Business Design</div>
+              <div className="th-prompt-line">
+                <span className="th-prompt-sym">$</span>
+                <span>building things that matter</span>
+                <span className="th-blink">▋</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Capabilities + tools */}
+          <div className="th-right">
+            <div>
+              <div className="th-section-header">Capabilities</div>
+              <div className="th-cap-list">
+                {capabilities.map((cap, i) => (
+                  <div
+                    key={cap.verb}
+                    className="th-cap"
+                    style={{ animationDelay: `${0.6 + i * 0.1}s` }}
+                  >
+                    <span className="th-cap-verb">{cap.verb}</span>
+                    <span className="th-cap-detail">
+                      {cap.detail}
+                      <em>{cap.sub}</em>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="th-tools-wrap">
+              <div className="th-section-header">Tools</div>
+              <div className="th-tools">
+                {tools.map(tool => (
+                  <span key={tool} className="th-tool">{tool}</span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Status bar */}
+        <div className="th-statusbar">
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="th-gh-link">
+            github
+          </a>
+        </div>
+
       </div>
     </header>
   )

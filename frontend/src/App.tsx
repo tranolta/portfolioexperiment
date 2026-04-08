@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-import Nav          from './components/Nav'
 import Header       from './components/sections/Header'
 import Skills       from './components/sections/Skills'
 import Logos        from './components/sections/Logos'
@@ -12,7 +11,6 @@ import HobbiesPage  from './pages/HobbiesPage'
 function Home() {
   return (
     <>
-      <Nav />
       <main>
         <Header />
         <Skills />

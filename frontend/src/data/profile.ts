@@ -15,7 +15,7 @@ export const profile: Profile = {
   availability: '',
   social: [
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/lejohntran/' },
-    { label: 'GitHub', url: '#' },
+    { label: 'GitHub', url: 'https://github.com/tranolta/portfolioexperiment/' },
   ],
 }
 

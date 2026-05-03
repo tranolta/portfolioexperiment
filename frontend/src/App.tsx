@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import Header       from './components/sections/Header'
-import Skills       from './components/sections/Skills'
 import Logos        from './components/sections/Logos'
 import Work         from './components/sections/Work'
 import AboutSection from './components/sections/AboutSection'
@@ -13,7 +12,6 @@ function Home() {
     <>
       <main>
         <Header />
-        <Skills />
         <Logos />
         <Work />
         <AboutSection />

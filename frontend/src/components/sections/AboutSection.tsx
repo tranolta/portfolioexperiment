@@ -7,7 +7,7 @@ export default function AboutSection() {
   return (
     <>
       {/* Section title */}
-      <div style={{ padding: '60px 100px 60px', background: '#fff', textAlign: 'center' }}>
+      <div style={{ padding: '60px 100px 40px', textAlign: 'center', borderTop: '1px solid rgba(26,25,24,0.08)' }}>
         <h2 style={{
           fontFamily: 'Epilogue, sans-serif',
           fontWeight: 600,

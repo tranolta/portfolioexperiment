@@ -1,25 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Nav() {
-  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <nav className="navigation">
-      <button
-        className="navigation__hamburger"
-        aria-label="Toggle menu"
-        aria-expanded={open}
-        onClick={() => setOpen(o => !o)}
-      >
-        <span className="navigation__hamburger-line" />
-        <span className="navigation__hamburger-line" />
-        <span className="navigation__hamburger-line" />
-      </button>
-      <ul className={`navigation__menu${open ? ' navigation__menu--active' : ''}`}>
-        <li><a href="#about" className="navigation__link" onClick={() => setOpen(false)}>About</a></li>
-        <li><a href="#work" className="navigation__link" onClick={() => setOpen(false)}>Work</a></li>
-        <li><a href="#contact" className="navigation__link" onClick={() => setOpen(false)}>Contact</a></li>
-      </ul>
+    <nav className={`doc-nav${scrolled ? ' doc-nav--scrolled' : ''}`}>
+      <div className="doc-nav__inner">
+        <a href="#about" className="doc-nav__mark">JT</a>
+        <div className="doc-nav__links">
+          <a href="#work" className="doc-nav__link">Work</a>
+          <a href="#contact" className="doc-nav__link">Contact</a>
+        </div>
+      </div>
     </nav>
   )
 }

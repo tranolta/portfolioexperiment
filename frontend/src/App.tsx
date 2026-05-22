@@ -1,32 +1,32 @@
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Header       from './components/sections/Header'
-import Logos        from './components/sections/Logos'
-import Work         from './components/sections/Work'
-import AboutSection from './components/sections/AboutSection'
-import Footer       from './components/sections/Footer'
+import { MotionConfig } from 'framer-motion'
+import Lenis from 'lenis'
+import CustomCursor from './components/CustomCursor'
+import HomePage     from './pages/HomePage'
 import WorkPage     from './pages/WorkPage'
 import HobbiesPage  from './pages/HobbiesPage'
 
-function Home() {
-  return (
-    <>
-      <main>
-        <Header />
-        <Logos />
-        <Work />
-        <AboutSection />
-      </main>
-      <Footer />
-    </>
-  )
+function useLenis() {
+  useEffect(() => {
+    const lenis = new Lenis()
+    const raf = (time: number) => { lenis.raf(time); requestAnimationFrame(raf) }
+    requestAnimationFrame(raf)
+    return () => lenis.destroy()
+  }, [])
 }
 
 export default function App() {
+  useLenis()
+
   return (
-    <Routes>
-      <Route path="/"         element={<Home />} />
-      <Route path="/work"     element={<WorkPage />} />
-      <Route path="/hobbies"  element={<HobbiesPage />} />
-    </Routes>
+    <MotionConfig reducedMotion="user">
+      <CustomCursor />
+      <Routes>
+        <Route path="/"        element={<HomePage />} />
+        <Route path="/work"    element={<WorkPage />} />
+        <Route path="/hobbies" element={<HobbiesPage />} />
+      </Routes>
+    </MotionConfig>
   )
 }

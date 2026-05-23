@@ -1,13 +1,31 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { profile } from '../data/profile'
 
 const TILES = [
-  { code: '01', abbr: 'Sm', title: 'Smart Campus', category: 'System Development', img: '/images/work-chalmers.png' },
-  { code: '02', abbr: 'Av', title: 'Autoliv', category: 'Master Thesis', img: '/images/work-autoliv.png' },
-  { code: '03', abbr: 'Tk', title: 'Talkamatic', category: 'Business Development', img: '/images/work-talkamatic.png' },
-  { code: '04', abbr: 'Ha', title: 'Hackathons', category: 'Side Project', img: '/images/work-hackathons.png' },
-  { code: '05', abbr: 'Ds', title: 'Design', category: 'Side Project', img: '/images/work-design.png' },
+  {
+    code: '01', abbr: 'Sm', title: 'Smart Campus', category: 'System Development', img: '/images/work-chalmers.png',
+    desc: 'Developed AI tools for Chalmers campus — a computer vision room-search platform, a movement prediction system using weather and sensor data, and an AR indoor navigation app built on ARKit.',
+  },
+  {
+    code: '02', abbr: 'Av', title: 'Autoliv', category: 'Master Thesis', img: '/images/work-autoliv.png',
+    desc: '10-month Master\'s thesis exploring how a tier-one vehicle safety supplier can shift from component logic to value-based offerings — and how startup accelerator principles can strengthen corporate innovation.',
+  },
+  {
+    code: '03', abbr: 'Tk', title: 'Talkamatic', category: 'Business Development', img: '/images/work-talkamatic.png',
+    desc: 'Volunteer at a GU Ventures dialogue-tech startup. Communication material, graphics, and event representation — covering everything that isn\'t engineering.',
+  },
+  {
+    code: '04', abbr: 'Ha', title: 'Hackathons', category: 'Side Project', img: '/images/work-hackathons.png',
+    desc: 'First hackathon out: built a food & wine recommendation tool using image recognition. Won. Getting more into this.',
+  },
+  {
+    code: '05', abbr: 'Ds', title: 'Design', category: 'Side Project', img: '/images/work-design.png',
+    desc: 'Started as a magazine spotlighting young entrepreneurs. Evolved into exploring tools for interior designers. Ongoing.',
+  },
 ]
+
+type Tile = typeof TILES[number]
 
 const BIO =
   'I build where business meets technology — sometimes code, sometimes strategy, ' +
@@ -44,6 +62,14 @@ const fadeUp = {
 }
 
 export default function HomePage() {
+  const [active, setActive] = useState<Tile | null>(null)
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setActive(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
   return (
     <div className="jk-page">
 
@@ -125,6 +151,10 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.1 + i * 0.08, ease: 'circOut' as const }}
+            onClick={() => setActive(tile)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={e => e.key === 'Enter' && setActive(tile)}
           >
             <span className="jk-tile__bg" style={{ backgroundImage: `url(${tile.img})` }} />
             <span className="jk-tile__code">{tile.code}</span>
@@ -136,6 +166,37 @@ export default function HomePage() {
           </motion.div>
         ))}
       </div>
+
+      {/* ── Tile modal ───────────────────────────────────── */}
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            className="jk-modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setActive(null)}
+          >
+            <motion.div
+              className="jk-modal"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 12 }}
+              transition={{ duration: 0.3, ease: 'circOut' as const }}
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="jk-modal__header">
+                <span className="jk-modal__code">{active.code}</span>
+                <button className="jk-modal__close" onClick={() => setActive(null)} aria-label="Close">✕</button>
+              </div>
+              <h2 className="jk-modal__title">{active.title}</h2>
+              <span className="jk-modal__cat">{active.category}</span>
+              <p className="jk-modal__desc">{active.desc}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   )

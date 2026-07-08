@@ -12,6 +12,7 @@
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.5.1",
     "next": "^15.5.9",
     "openai": "^6.45.0",
     "react": "^19.2.0",

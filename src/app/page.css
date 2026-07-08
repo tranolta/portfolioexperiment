@@ -26,9 +26,33 @@
 
 .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
 
+.btnPdf { padding: 0.55rem 1.4rem; font-size: var(--text-sm); }
+
 /* States */
 .state { padding: var(--space-16) 0; text-align: center; color: var(--color-ink-2); }
 .error { border-left: 3px solid var(--color-bear); background: var(--color-paper-2); padding: var(--space-6); }
+
+/* Gathering status */
+.gathering {
+  display: flex; align-items: center; gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-hero); color: var(--color-paper);
+  font-weight: 700; letter-spacing: 0.01em;
+}
+.gatheringDot {
+  width: 12px; height: 12px; flex: none;
+  background: oklch(80% 0.14 138);
+  border-radius: 50%;
+  animation: pulse 1.1s var(--ease-out) infinite;
+}
+.ellipsis::after { content: ""; animation: dots 1.4s steps(4, end) infinite; }
+@keyframes pulse { 0%, 100% { opacity: 0.35; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+@media (prefers-reduced-motion: reduce) {
+  .gatheringDot { animation: none; opacity: 0.9; }
+  .ellipsis::after { content: "…"; animation: none; }
+}
 
 /* Skeleton */
 .skeleton { border: 1px solid var(--color-rule); border-top: 3px solid var(--color-rule); padding: var(--space-6); min-height: 260px; }

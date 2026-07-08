@@ -14,6 +14,28 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [pdfBusy, setPdfBusy] = useState(false);
+
+  const downloadPdf = useCallback(async () => {
+    if (!data) return;
+    setPdfBusy(true);
+    try {
+      const [{ pdf }, { ReportDocument }] = await Promise.all([
+        import("@react-pdf/renderer"),
+        import("@/components/report/ReportDocument"),
+      ]);
+      const blob = await pdf(<ReportDocument data={data} />).toBlob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `signal-report-${data.generatedAt.slice(0, 10)}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } finally {
+      setPdfBusy(false);
+    }
+  }, [data]);
+
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -77,7 +99,11 @@ export default function Home() {
         <div className="wrap">
           <div className="sectionHead">
             <h2 className="sectionTitle">Today&rsquo;s signals</h2>
-            <span className="eyebrow">Direction · Conviction · Sources</span>
+            {data && data.signals.length > 0 && (
+              <button className="btn btnPdf" onClick={() => void downloadPdf()} disabled={pdfBusy}>
+                {pdfBusy ? "Building report…" : "Download report (PDF)"}
+              </button>
+            )}
           </div>
 
           {error && (
@@ -90,16 +116,24 @@ export default function Home() {
           )}
 
           {loading && !error && (
-            <div className="grid" aria-hidden="true">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="skeleton">
-                  <div className="bar short" />
-                  <div className="bar med" />
-                  <div className="bar" />
-                  <div className="bar med" />
-                </div>
-              ))}
-            </div>
+            <>
+              <div className="gathering" role="status" aria-live="polite">
+                <span className="gatheringDot" aria-hidden="true" />
+                <span>
+                  Gathering signals from the Swedish press<span className="ellipsis" aria-hidden="true" />
+                </span>
+              </div>
+              <div className="grid" aria-hidden="true">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className="skeleton">
+                    <div className="bar short" />
+                    <div className="bar med" />
+                    <div className="bar" />
+                    <div className="bar med" />
+                  </div>
+                ))}
+              </div>
+            </>
           )}
 
           {!loading && !error && data && (

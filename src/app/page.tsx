@@ -14,28 +14,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [pdfBusy, setPdfBusy] = useState(false);
-
-  const downloadPdf = useCallback(async () => {
-    if (!data) return;
-    setPdfBusy(true);
-    try {
-      const [{ pdf }, { ReportDocument }] = await Promise.all([
-        import("@react-pdf/renderer"),
-        import("@/components/report/ReportDocument"),
-      ]);
-      const blob = await pdf(<ReportDocument data={data} />).toBlob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `signal-report-${data.generatedAt.slice(0, 10)}.pdf`;
-      a.click();
-      URL.revokeObjectURL(url);
-    } finally {
-      setPdfBusy(false);
-    }
-  }, [data]);
-
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -100,9 +78,7 @@ export default function Home() {
           <div className="sectionHead">
             <h2 className="sectionTitle">Today&rsquo;s signals</h2>
             {data && data.signals.length > 0 && (
-              <button className="btn btnPdf" onClick={() => void downloadPdf()} disabled={pdfBusy}>
-                {pdfBusy ? "Building report…" : "Download report (PDF)"}
-              </button>
+              <a className="btn btnPdf" href="/report">Download report (PDF)</a>
             )}
           </div>
 

@@ -4,6 +4,10 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-09-27",
   "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "AI_MODEL": "claude-opus-4-8",
+    "AI_GATEWAY_BASE_URL": "https://ai-gateway.portal.chalmers.se/llm/openai/v1"
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"

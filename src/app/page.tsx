@@ -44,8 +44,9 @@ export default function Home() {
           <p className="eyebrow heroEyebrow">Svenska pressen · Investeringssignaler</p>
           <h1 className="heroTitle">Signals from the Swedish press.</h1>
           <p className="heroLede">
-            Reads the day&rsquo;s Swedish financial reporting and distills it into investment
-            trends, opportunities, and risks.
+            A tool that reads the day&rsquo;s Swedish financial press — Dagens Industri,
+            SvD Näringsliv, DN Ekonomi, SVT Ekonomi and Breakit — for a quick read on how today
+            looks and what to keep an eye on.
           </p>
           <div className="heroActions">
             <button className="btn" onClick={() => void load()} disabled={loading}>
@@ -128,7 +129,7 @@ export default function Home() {
       </main>
 
       <footer className="foot">
-        <div className="wrap">Signalstockholm</div>
+        <div className="wrap">By John Tran</div>
       </footer>
     </>
   );

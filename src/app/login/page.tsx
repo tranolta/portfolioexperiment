@@ -29,7 +29,7 @@ export default function LoginPage() {
   return (
     <main className="loginWrap">
       <form className="loginCard" onSubmit={onSubmit}>
-        <p className="eyebrow">Signalstockholm</p>
+        <p className="eyebrow">Swedish press signals</p>
         <h1>Enter password</h1>
         <input
           className="loginInput"

@@ -43,7 +43,7 @@ function clean(html: string | undefined): string {
 async function fetchOne(source: FeedSource, perFeed: number): Promise<Article[]> {
   try {
     const res = await fetch(source.url, {
-      headers: { "user-agent": "Signalstockholm/1.0 (+https://johntran.dev)" },
+      headers: { "user-agent": "johntran.dev-signals/1.0 (+https://johntran.dev)" },
       signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);

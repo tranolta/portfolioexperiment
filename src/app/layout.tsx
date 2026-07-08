@@ -10,9 +10,9 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Signalstockholm — Investment signals from the Swedish press",
+  title: "Signals from the Swedish press",
   description:
-    "Reads the Swedish financial press (DI, SvD, DN, SVT, Breakit) and surfaces investment trends and opportunities.",
+    "A tool that reads the day’s Swedish financial press — Dagens Industri, SvD Näringsliv, DN Ekonomi, SVT Ekonomi and Breakit — for a quick read on how today looks and what to keep an eye on. By John Tran.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

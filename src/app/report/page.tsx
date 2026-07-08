@@ -56,16 +56,17 @@ export default function ReportPage() {
               <div className="rBrand">
                 <div className="rMark" />
                 <div>
-                  <div className="rBrandName">Signalstockholm</div>
-                  <div className="rBrandSub">Swedish Press Intelligence</div>
+                  <div className="rBrandName">John Tran</div>
+                  <div className="rBrandSub">Swedish Press Signals</div>
                 </div>
               </div>
               <div className="rTitle">
                 <div className="rTitleGray">Signal Report</div>
                 <div className="rTitleBold">Swedish Press</div>
                 <p className="rIntro">
-                  Automated research reading the Swedish financial press and distilling it into
-                  investment trends, opportunities, and risks — grounded in the source articles.
+                  A tool that reads the day’s Swedish financial press — Dagens Industri, SvD
+                  Näringsliv, DN Ekonomi, SVT Ekonomi and Breakit — for a quick read on how today
+                  looks and what to keep an eye on.
                 </p>
               </div>
             </div>

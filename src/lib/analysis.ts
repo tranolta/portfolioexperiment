@@ -15,6 +15,22 @@ function readEnv(key: string): string | undefined {
   return process.env[key];
 }
 
+/** Names (never values) of env vars the Worker can see — for diagnosing
+ *  missing-secret issues without leaking anything. */
+function visibleEnvKeys(): string {
+  let cfKeys: string[] = [];
+  let contextOk = false;
+  try {
+    const cf = getCloudflareContext();
+    contextOk = Boolean(cf);
+    cfKeys = Object.keys((cf?.env as Record<string, unknown> | undefined) ?? {});
+  } catch {
+    contextOk = false;
+  }
+  const procKeys = Object.keys(process.env).filter((k) => k.startsWith("AI_"));
+  return `cfContext=${contextOk}; cfEnvKeys=[${cfKeys.join(", ")}]; procAiKeys=[${procKeys.join(", ")}]`;
+}
+
 export type Signal = {
   title: string;
   thesis: string;
@@ -76,7 +92,7 @@ function articlesToPrompt(articles: Article[]): string {
 
 export async function analyzeSignals(articles: Article[]): Promise<Signal[]> {
   const apiKey = readEnv("AI_GATEWAY_API_KEY");
-  if (!apiKey) throw new Error("AI_GATEWAY_API_KEY is not set");
+  if (!apiKey) throw new Error(`AI_GATEWAY_API_KEY is not set. Diagnostic: ${visibleEnvKeys()}`);
 
   const client = new OpenAI({
     apiKey,

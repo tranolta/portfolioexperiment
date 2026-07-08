@@ -60,6 +60,4 @@
 .skeleton .bar.short { width: 45%; }
 .skeleton .bar.med { width: 75%; }
 
-.disclaimer { border-top: 1px solid var(--color-rule); padding-block: var(--space-8); color: var(--color-ink-2); font-size: var(--text-sm); }
-
 .foot { background: var(--color-hero); color: oklch(85% 0.02 156); padding-block: var(--space-8); font-size: var(--text-sm); }

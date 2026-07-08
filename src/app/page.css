@@ -1,0 +1,41 @@
+/* Hero — deep forest band, left-biased (Vinnova DNA) */
+.hero {
+  background: var(--color-hero);
+  color: var(--color-paper);
+  padding-block: clamp(3rem, 2rem + 6vw, 6rem);
+}
+.hero .wrap { max-width: var(--maxw); }
+.heroInner { max-width: 62ch; }
+.heroEyebrow { color: oklch(80% 0.09 138); letter-spacing: 0.16em; }
+.heroTitle { font-size: var(--text-display); margin-block: var(--space-4); }
+.heroLede { font-size: var(--text-lg); color: oklch(90% 0.01 156); max-width: 54ch; }
+.heroActions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6); margin-top: var(--space-8); }
+.heroMeta { font-size: var(--text-sm); color: oklch(82% 0.02 156); }
+.heroMeta strong { color: var(--color-paper); }
+
+/* Sources strip */
+.strip { border-bottom: 1px solid var(--color-rule); background: var(--color-paper-2); }
+.stripInner { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: center; padding-block: var(--space-4); }
+.stripLabel { color: var(--color-ink-2); }
+.stripSources { display: flex; flex-wrap: wrap; gap: var(--space-4); font-weight: 500; }
+
+/* Signals section */
+.signals { padding-block: var(--space-section); }
+.sectionHead { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-8); flex-wrap: wrap; }
+.sectionTitle { font-size: var(--text-2xl); }
+
+.grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+
+/* States */
+.state { padding: var(--space-16) 0; text-align: center; color: var(--color-ink-2); }
+.error { border-left: 3px solid var(--color-bear); background: var(--color-paper-2); padding: var(--space-6); }
+
+/* Skeleton */
+.skeleton { border: 1px solid var(--color-rule); border-top: 3px solid var(--color-rule); padding: var(--space-6); min-height: 260px; }
+.skeleton .bar { height: 14px; background: var(--color-rule); margin-bottom: var(--space-3); }
+.skeleton .bar.short { width: 45%; }
+.skeleton .bar.med { width: 75%; }
+
+.disclaimer { border-top: 1px solid var(--color-rule); padding-block: var(--space-8); color: var(--color-ink-2); font-size: var(--text-sm); }
+
+.foot { background: var(--color-hero); color: oklch(85% 0.02 156); padding-block: var(--space-8); font-size: var(--text-sm); }

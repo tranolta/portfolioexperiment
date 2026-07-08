@@ -1,0 +1,50 @@
+@import "../../tokens.css";
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; margin: 0; }
+
+a { color: var(--color-link); text-decoration: underline; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--space-6); }
+
+/* Eyebrow / label — uppercase tracked grotesk */
+.eyebrow {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--color-ink-2);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font: inherit; font-weight: 700; cursor: pointer;
+  border: 0; border-radius: var(--radius-pill);
+  padding: 0.7rem 2rem;
+  background: var(--color-accent); color: var(--color-accent-ink);
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.btn:hover { background: oklch(50% 0.165 138); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.55; cursor: progress; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 150ms !important; animation: none !important; }
+}

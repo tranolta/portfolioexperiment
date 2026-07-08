@@ -1,0 +1,50 @@
+/* tokens.css — canonical source of truth for the design system.
+   Extracted from vinnova.se (see design.md). Amend intentionally. */
+:root {
+  /* Palette */
+  --color-paper:      oklch(100% 0 0);          /* #FFFFFF content paper        */
+  --color-paper-2:    oklch(98.6% 0.002 250);   /* #F9FAFC off-white band       */
+  --color-hero:       oklch(31% 0.055 156);     /* #173D29 deep forest hero band*/
+  --color-ink:        oklch(28% 0.008 232);     /* #21272A body text            */
+  --color-ink-2:      oklch(45% 0.008 240);     /* #4D5358 slate / footer       */
+  --color-rule:       oklch(90% 0.004 250);     /* hairline dividers            */
+  --color-accent:     oklch(56% 0.165 138);     /* #24870F leaf green — primary */
+  --color-accent-ink: oklch(100% 0 0);          /* white on green               */
+  --color-link:       oklch(50% 0.185 330);     /* magenta — darkened for AA     */
+  --color-focus:      oklch(56% 0.165 138);     /* green focus ring             */
+
+  /* Semantic signal accents (derived, kept in-family) */
+  --color-bull:       oklch(56% 0.165 138);     /* leaf green — positive        */
+  --color-bear:       oklch(55% 0.19 25);        /* clay red — negative          */
+  --color-watch:      oklch(70% 0.14 85);        /* amber — neutral / watch      */
+
+  /* Type */
+  --font-display: "Archivo", "TradeGothic", Arial, sans-serif;
+  --font-body:    "Archivo", "TradeGothic", Arial, sans-serif;
+  --font-mono:    ui-monospace, "SFMono-Regular", monospace;
+
+  /* Type scale — 1.25 major third */
+  --text-xs:      0.8rem;
+  --text-sm:      0.9rem;
+  --text-base:    1.125rem;   /* 18px body */
+  --text-lg:      1.406rem;
+  --text-xl:      1.758rem;
+  --text-2xl:     2.197rem;
+  --text-3xl:     2.75rem;
+  --text-display: clamp(2.75rem, 1.5rem + 5vw, 4rem);  /* H1 ~64px */
+
+  /* Spacing — 4pt scale */
+  --space-1: 0.25rem; --space-2: 0.5rem;  --space-3: 0.75rem; --space-4: 1rem;
+  --space-6: 1.5rem;  --space-8: 2rem;    --space-12: 3rem;   --space-16: 4rem;
+  --space-section: 4rem;   /* sections 0 64px */
+
+  --measure: 68ch;
+  --maxw: 1200px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 180ms;  --dur-base: 240ms;  --dur-slow: 320ms;
+
+  /* Radius — sharp, institutional */
+  --radius-card: 0px;  --radius-pill: 0px;  --radius-input: 0px;
+}

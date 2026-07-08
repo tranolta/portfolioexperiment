@@ -1,5 +1,19 @@
 import OpenAI from "openai";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import type { Article } from "./rss";
+
+/** Read config from the Cloudflare request-scoped env (where dashboard secrets
+ *  live) first, falling back to process.env for local `next dev`. */
+function readEnv(key: string): string | undefined {
+  try {
+    const cf = getCloudflareContext();
+    const value = (cf?.env as Record<string, string | undefined> | undefined)?.[key];
+    if (value) return value;
+  } catch {
+    // Not in a Cloudflare request context (build step / plain node dev).
+  }
+  return process.env[key];
+}
 
 export type Signal = {
   title: string;
@@ -61,17 +75,17 @@ function articlesToPrompt(articles: Article[]): string {
 }
 
 export async function analyzeSignals(articles: Article[]): Promise<Signal[]> {
-  const apiKey = process.env.AI_GATEWAY_API_KEY;
+  const apiKey = readEnv("AI_GATEWAY_API_KEY");
   if (!apiKey) throw new Error("AI_GATEWAY_API_KEY is not set");
 
   const client = new OpenAI({
     apiKey,
-    baseURL: process.env.AI_GATEWAY_BASE_URL ?? DEFAULT_BASE_URL,
+    baseURL: readEnv("AI_GATEWAY_BASE_URL") ?? DEFAULT_BASE_URL,
   });
   const linkByTitle = new Map(articles.map((a) => [a.title, a]));
 
   const completion = await client.chat.completions.create({
-    model: process.env.AI_MODEL ?? DEFAULT_MODEL,
+    model: readEnv("AI_MODEL") ?? DEFAULT_MODEL,
     temperature: 0.3,
     tools: [SIGNAL_TOOL],
     tool_choice: { type: "function", function: { name: "report_signals" } },

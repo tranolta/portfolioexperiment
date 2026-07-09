@@ -3,15 +3,18 @@ import { getCloudflareContext } from "@opennextjs/cloudflare";
 export const AUTH_COOKIE = "sig_auth";
 export const COOKIE_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
-export async function getSitePassword(): Promise<string | undefined> {
+/** Accepted passwords, read from a comma-separated SITE_PASSWORD secret. */
+export async function getSitePasswords(): Promise<string[]> {
+  let raw: string | undefined;
   try {
     const { env } = await getCloudflareContext({ async: true });
-    const value = (env as unknown as { SITE_PASSWORD?: string }).SITE_PASSWORD;
-    if (value) return value;
+    raw = (env as unknown as { SITE_PASSWORD?: string }).SITE_PASSWORD;
   } catch {
     // Not in a Cloudflare context (local `next dev`).
   }
-  return process.env.SITE_PASSWORD;
+  raw = raw ?? process.env.SITE_PASSWORD;
+  if (!raw) return [];
+  return raw.split(",").map((s) => s.trim()).filter(Boolean);
 }
 
 /** Constant-time compare to avoid leaking secrets via timing. */

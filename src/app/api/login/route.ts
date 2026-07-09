@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { AUTH_COOKIE, COOKIE_MAX_AGE, authToken, getSitePassword, safeEqual } from "@/lib/auth";
+import { AUTH_COOKIE, COOKIE_MAX_AGE, authToken, getSitePasswords, safeEqual } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
-  const expected = await getSitePassword();
-  if (!expected) {
+  const passwords = await getSitePasswords();
+  if (passwords.length === 0) {
     return NextResponse.json({ error: "Site password is not configured." }, { status: 503 });
   }
 
@@ -17,12 +17,13 @@ export async function POST(req: Request) {
     // fall through to failure
   }
 
-  if (!safeEqual(password, expected)) {
+  const match = passwords.find((p) => safeEqual(password, p));
+  if (!match) {
     return NextResponse.json({ error: "Incorrect password." }, { status: 401 });
   }
 
   const res = NextResponse.json({ ok: true });
-  res.cookies.set(AUTH_COOKIE, await authToken(expected), {
+  res.cookies.set(AUTH_COOKIE, await authToken(match), {
     httpOnly: true,
     secure: true,
     sameSite: "lax",

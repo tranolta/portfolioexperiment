@@ -1,16 +1,25 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { AUTH_COOKIE, authToken, getSitePassword, safeEqual } from "@/lib/auth";
+import { AUTH_COOKIE, authToken, getSitePasswords, safeEqual } from "@/lib/auth";
 
 export async function middleware(req: NextRequest) {
-  const expected = await getSitePassword();
+  const passwords = await getSitePasswords();
 
   // Fail closed: without a configured password, grant no access.
-  if (!expected) {
+  if (passwords.length === 0) {
     return new NextResponse("Site password is not configured.", { status: 503 });
   }
 
   const token = req.cookies.get(AUTH_COOKIE)?.value;
-  if (token && safeEqual(token, await authToken(expected))) {
+  let valid = false;
+  if (token) {
+    for (const password of passwords) {
+      if (safeEqual(token, await authToken(password))) {
+        valid = true;
+        break;
+      }
+    }
+  }
+  if (valid) {
     return NextResponse.next();
   }
 
